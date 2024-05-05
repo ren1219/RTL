@@ -1,4 +1,4 @@
-include("RTL\\lib\\backend")
-include("RTL\\lib\\frontend")
+require("RTL\\lib\\backend")
+require("RTL\\lib\\frontend")
 
 -- Hello world!
