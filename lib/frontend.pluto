@@ -1,0 +1,3 @@
+local root = menu.my_root()
+
+root:action("Hello world!", {}, "", function() end)

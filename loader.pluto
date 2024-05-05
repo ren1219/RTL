@@ -1,3 +1,2 @@
-local root = menu.my_root()
-
-root:action("Hello world!", {}, "", function() end)
+require(filesystem.stand_dir() .. "RTL\\lib\\backend")
+require(filesystem.stand_dir() .. "RTL\\lib\\frontend")
