@@ -41,7 +41,7 @@ for i = 1, #rtl_target.index.files do
         file = io.open(rtl_relpath .. rtl_target.index.folders[1] .. rtl_target.index.files[i], "wb") 
         file:write(fetch) 
         file:close() 
-        util.log(rtl_relpath .. rtl_target.index.folders[1] .. rtl_target.index.files[i])
+        util.log("Gathered " .. rtl_relpath .. rtl_target.index.folders[1] .. rtl_target.index.files[i] " from " .. rtl_system.host, rtl_system.path .. rtl_target.index.files[i])
         done = true
     end)
     async_http.dispatch()
