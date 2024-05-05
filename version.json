@@ -14,8 +14,8 @@
       "version.json",
       "loader.pluto",
       "install.pluto",
-      "lib\\funcs.pluto",
-      "lib\\ui.pluto"
+      "lib\\backend.pluto",
+      "lib\\frontend.pluto"
     ],
     "assets": [
       "Disabled.png",
