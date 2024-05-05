@@ -3,20 +3,75 @@ local rtl_system = {
     host = "raw.githubusercontent.com",
     path = "ren1219/RTL/main/",
 }
+function log(arg)
+    menu.my_root():action(arg, {}, "", function() end)
+end
 
-util.toast("[RTL] INSTALLER 1/5: Getting version info...")
+menu.my_root():divider("")
+
+log("[1 / 6] Getting version info...")
 filesystem.mkdir(filesystem.stand_dir() .. "RTL")
+local done = false
 async_http.init(rtl_system.host, rtl_system.path .. "version.json", function(fetch)
     file = io.open(filesystem.stand_dir() .. "RTL\\version.json", "wb") 
     file:write(fetch) 
     file:close()
+    done = true
 end)
 async_http.dispatch()
+repeat util.yield() until done
 
-util.toast("[RTL] INSTALLER 2/5: Checking requirements...")
-rtl_cache_temp = io.open(filesystem.stand_dir() .. "RTL\\version.json", "r") 
-rtl_cache = rtl_cache_temp:read("*all")
-rtl_cache_temp:close()
-rtl_cache = rtl_lib_json.decode(rtl_cache)
+log("[2 / 6] Reading information...")
+rtl_cache = io.open(filesystem.stand_dir() .. "RTL\\version.json", "r") 
+rtl_target = rtl_cache:read("*all")
+rtl_cache:close()
+rtl_target = rtl_lib_json.decode(rtl_target)
 
-util.toast(version.number)
+log("[3 / 6] Preparing installation...")
+for i = 1, #rtl_target.index.folders do
+    filesystem.mkdir(filesystem.stand_dir() .. rtl_target.index.folders[i])
+end
+
+log("[4 / 6] Downloading scripts...")
+for i = 1, #rtl_target.index.files do
+    local done = false
+
+    async_http.init(rtl_system.host, rtl_system.path .. rtl_target.index.files[i], function(fetch)
+        file = io.open(filesystem.stand_dir() .. rtl_target.index.folders[1] .. rtl_target.index.files[i], "wb") 
+        file:write(fetch) 
+        file:close() 
+        done = true
+    end)
+    async_http.dispatch()
+
+    repeat util.yield() until done
+end
+
+log("[5 / 6] Downloading themes...")
+for i = 1, #rtl_target.trainers do
+    filesystem.mkdir(filesystem.stand_dir() .. rtl_target.index.folders[3] .. rtl_target.trainers[i])
+
+    for j = 1, #rtl_target.index.assets do
+        local done = false
+
+        async_http.init(rtl_system.host, rtl_system.path .. "themes/" .. rtl_target.trainers[i] .. "/" .. rtl_target.index.assets[j], function(fetch)
+            file = io.open(filesystem.stand_dir() .. rtl_target.index.folders[3] .. rtl_target.trainers[i] .. "\\" .. rtl_target.index.assets[j], "wb") 
+            file:write(fetch) 
+            file:close() 
+            done = true
+        end)
+        async_http.dispatch()
+
+        repeat util.yield() until done
+    end
+end
+
+log("[6 / 6] Success! Restarting...")
+rtl_cache = io.open(filesystem.stand_dir() .. "RTL\\loader.pluto", "r") 
+rtl_target = rtl_cache:read("*all")
+rtl_cache:close()
+source = io.open(filesystem.scripts_dir() .. SCRIPT_RELPATH, "wb")
+source:write(rtl_target) 
+source:close() 
+util.yield(1000)
+util.restart_script()

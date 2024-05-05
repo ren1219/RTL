@@ -2,8 +2,8 @@
   "number": "v0.1",
   "changelog": "Changelog test\nThis is a changelog.",
   "trainers": [
-      "Stand"
-    ],
+    "Stand"
+  ],
   "index": {
     "folders": [
       "RTL\\",
