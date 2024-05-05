@@ -1,2 +1,2 @@
-require(filesystem.stand_dir() .. "RTL\\lib\\backend")
-require(filesystem.stand_dir() .. "RTL\\lib\\frontend")
+require("RTL\\lib\\backend")
+require("RTL\\lib\\frontend")
