@@ -1,2 +1,4 @@
 include("RTL\\lib\\backend")
 include("RTL\\lib\\frontend")
+
+-- Hello world!
