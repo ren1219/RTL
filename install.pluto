@@ -39,7 +39,6 @@ for i = 1, #rtl_target.index.files do
 
     async_http.init(rtl_system.host, rtl_system.path .. rtl_target.index.files[i], function(fetch)
         file = io.open(rtl_relpath .. rtl_target.index.folders[1] .. rtl_target.index.files[i], "wb") 
-        util.toast(fetch)
         file:write(fetch) 
         file:close() 
         done = true
