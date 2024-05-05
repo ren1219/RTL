@@ -1,0 +1,60 @@
+{
+    "name": "Stand",
+    "x": 1323,
+    "y": 560,
+    "width": 450,
+    "height": 32,
+    "scroll_speed": 70,
+    "max_options_displayed": 11,
+    "cursor_selection_offset": 2,
+    "spacing_between_widgets": 3,
+
+    "colors": {
+        "primary": "FF00FFFF",
+        "focused": "FFFFFFFF",
+        "unfocused": "FFFFFFFF"
+    },
+    "background": {
+        "color": "0000004D",
+        "blur": 3
+    },
+    "outline": {
+        "width": 0,
+        "rounded": false,
+        "color": "FF00FFFF"
+    },
+    "bigtext": {
+        "scale": 15,
+        "x": -2,
+        "y": 2
+    },
+    "smalltext": {
+        "box_width": 300,
+        "padding": 0,
+        "scale": 12,
+        "x": -2,
+        "y": 2
+    },
+    "scrollbar": {
+        "state": "Enabled For Big Lists",
+        "width": 6
+    },
+
+    "toggles": {
+        "address_bar": true,
+        "tabs": true,
+        "help_text": true,
+        "command_syntax": true,
+        "slider_behavior": true,
+        "usable_by_others": true,
+        "show_owning": true
+    },
+    "directx": {
+        "header": false,
+        "header_framerate": 0,
+        "footer": false,
+        "list_count": false,
+        "overlay": false
+    }
+}
+  
