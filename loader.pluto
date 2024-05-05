@@ -1,0 +1,1 @@
+menu.my_root():action("Hello world!", {}, "", function() end)
