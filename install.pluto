@@ -1,0 +1,22 @@
+local rtl_lib_json = require("json")
+local rtl_system = {
+    host = "raw.githubusercontent.com",
+    path = "ren1219/RTL/main/",
+}
+
+util.toast("[RTL] INSTALLER 1/5: Getting version info...")
+filesystem.mkdir(filesystem.stand_dir() .. "RTL")
+async_http.init(rtl_system.host, rtl_system.path .. "version.json", function(fetch)
+    file = io.open(filesystem.stand_dir() .. "RTL\\version.json", "wb") 
+    file:write(fetch) 
+    file:close()
+end)
+async_http.dispatch()
+
+util.toast("[RTL] INSTALLER 2/5: Checking requirements...")
+rtl_cache_temp = io.open(filesystem.stand_dir() .. "RTL\\version.json", "r") 
+rtl_cache = rtl_cache_temp:read("*all")
+rtl_cache_temp:close()
+rtl_cache = rtl_lib_json.decode(rtl_cache)
+
+util.toast(version.number)

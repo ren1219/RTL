@@ -1,7 +1,39 @@
 {
-    "number": "v0.1",
-    "changelog": "Changelog test\nThis is a changelog.",
-    "menu_list": [
-        "Stand"
-      ]
+  "number": "v0.1",
+  "changelog": "Changelog test\nThis is a changelog.",
+  "trainers": [
+      "Stand"
+    ],
+  "index": {
+    "folders": [
+      "RTL\\",
+      "RTL\\lib\\",
+      "RTL\\themes\\"
+    ],
+    "files": [
+      "version.json",
+      "loader.pluto",
+      "install.pluto",
+      "lib\\funcs.pluto",
+      "lib\\ui.pluto"
+    ],
+    "assets": [
+      "Disabled.png",
+      "Edit.png",
+      "Enabled.png",
+      "Font.spritefont",
+      "Friends.png",
+      "Link.png",
+      "Search.png",
+      "Toggle Off Auto.png",
+      "Toggle Off List.png",
+      "Toggle Off.png",
+      "Toggle On Auto.png",
+      "Toggle On List.png",
+      "Toggle List.png",
+      "User.png",
+      "Users.png",
+      "config.json"
+    ]
+  }
 }

@@ -1,0 +1,15 @@
+if async_http.have_access() then
+    util.toast("[RTL] Starting Installation...")
+    async_http.init("raw.githubusercontent.com", "ren1219/RTL/main/install.pluto", function(fetch)
+        source = io.open(filesystem.scripts_dir() .. SCRIPT_RELPATH, "wb")
+        source:write(fetch) 
+	    source:close() 
+	    util.restart_script()
+	end) 
+	async_http.dispatch()
+else
+    menu.my_root():divider(" ")
+    menu.my_root():action("ERROR: No internet access!", {}, "", function() end)
+    menu.my_root():action("> Script could not be installed.", {}, "", function() end)
+    menu.my_root():action("> Make sure internet access is enabled.", {}, "", function() end)
+end
