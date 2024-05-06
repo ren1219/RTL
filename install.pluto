@@ -51,7 +51,7 @@ end
 
 log("[5 / 6] Downloading themes...")
 for i = 1, #rtl_target.trainers do
-    filesystem.mkdir(rtl_relpath .. rtl_target.index.folders[2] .. rtl_target.trainers[i])
+    filesystem.mkdir(rtl_relpath .. rtl_target.index.folders[2] .. "\\" .. rtl_target.trainers[i])
 
     for j = 1, #rtl_target.index.assets do
         local done = false
