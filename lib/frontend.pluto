@@ -1,4 +1,10 @@
 local root = menu.my_root()
 
-root:action("Hello world!", {}, "", function() end)
-util.toast("Frontend loaded!")
+root:action("Fetch Update", {}, "", function() rtl_fetchupdate() end)
+root:divider("RTL v0.1")
+root:list("Menu, PC", {}, "", function() end)
+root:list("Menu, Console", {}, "", function() end)
+root:list("Menu, Unreleased", {}, "", function() end)
+root:divider("About")
+root:list("Credits", {}, "", function() end)
+root:hyperlink("Discord", "https://discord.gg/rZpA422Ecx", "Join the developer's Discord server for updates, requests and more.")

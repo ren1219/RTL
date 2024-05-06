@@ -1,5 +1,4 @@
 if async_http.have_access() then
-    util.toast("[RTL] Starting Installation...")
     async_http.init("raw.githubusercontent.com", "ren1219/RTL/main/install.pluto", function(fetch)
         source = io.open(filesystem.scripts_dir() .. SCRIPT_RELPATH, "wb")
         source:write(fetch) 

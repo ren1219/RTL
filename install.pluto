@@ -56,7 +56,7 @@ for i = 1, #rtl_target.trainers do
     for j = 1, #rtl_target.index.assets do
         local done = false
 
-        async_http.init(rtl_system.host, rtl_system.path .. "themes/" .. rtl_target.trainers[i] .. "/" .. rtl_target.index.assets[j], function(fetch)
+        async_http.init(rtl_system.host, rtl_system.path .. rtl_target.index.folders[2] .. rtl_target.trainers[i] .. "/" .. rtl_target.index.assets[j], function(fetch)
             file = io.open(rtl_relpath .. rtl_target.index.folders[2] .. rtl_target.trainers[i] .. "\\" .. rtl_target.index.assets[j], "wb") 
             file:write(fetch) 
             file:close() 

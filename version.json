@@ -1,6 +1,6 @@
 {
   "number": "v0.1",
-  "changelog": "Changelog test\nThis is a changelog.",
+  "changelog": "- Added foo\n- Fixed bar\n- Removed egg",
   "trainers": [
     "Stand"
   ],
