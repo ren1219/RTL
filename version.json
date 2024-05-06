@@ -6,9 +6,8 @@
   ],
   "index": {
     "folders": [
-      "RTL\\",
-      "RTL\\lib\\",
-      "RTL\\themes\\"
+      "lib\\",
+      "themes\\"
     ],
     "files": [
       "version.json",
