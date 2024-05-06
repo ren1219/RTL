@@ -13,8 +13,8 @@
       "version.json",
       "loader.pluto",
       "install.pluto",
-      "lib\\backend.pluto",
-      "lib\\frontend.pluto"
+      "lib/backend.pluto",
+      "lib/frontend.pluto"
     ],
     "assets": [
       "Disabled.png",
