@@ -1,10 +1,27 @@
-local root = menu.my_root()
+local rtl_root = menu.my_root()
 
-root:action("Fetch Update", {}, "", function() rtl_fetchupdate() end)
-root:divider("RTL v0.1")
-root:list("Menu, PC", {}, "", function() end)
-root:list("Menu, Console", {}, "", function() end)
-root:list("Menu, Unreleased", {}, "", function() end)
-root:divider("About")
-root:list("Credits", {}, "", function() end)
-root:hyperlink("Discord", "https://discord.gg/rZpA422Ecx", "Join the developer's Discord server for updates, requests and more.")
+rtl_root:action("Fetch Update", {}, "", function() rtl_fetchupdate() end)
+rtl_root:divider("RTL " .. rtl_getver())
+rtl_trainers_pc = rtl_root:list("Menu, PC", {}, "", function() end)
+rtl_trainers_console = rtl_root:list("Menu, Console", {}, "", function() end)
+rtl_trainers_unreleased = rtl_root:list("Menu, Unreleased", {}, "", function() end)
+rtl_root:divider("About")
+rtl_credits = rtl_root:list("Credits", {}, "", function() end)
+rtl_root:hyperlink("Discord", "https://discord.gg/rZpA422Ecx", "Join the developer's Discord server for updates, requests and more.")
+
+rtl_credits:hyperlink("ukn", "https://github.com/ukn-repos", "Original creator, developer and asset creator. Deleted the original repo.")
+rtl_credits:hyperlink("ren1219", "https://github.com/ren1219", "De facto new owner. Developer. Maintainer & asset creator.")
+rtl_credits:hyperlink("Clxms-Y", "https://github.com/Clxms-Y", "Archived original repo. Developer. Provided menu screenshots.")
+rtl_credits:divider("Contributors")
+rtl_credits:hyperlink("hexarobi", "https://github.com/hexarobi", "Helped prolong the script's lifespan by including it in ScriptManager.")
+rtl_credits:action("cocow", {}, "Created StandLua-AllInOne, which was the inspiration for the Replica series.", function() end)
+rtl_credits:hyperlink("stagnate6628", "https://github.com/stagnate6628", "Co-created ThemeRepo; an old revival project of RTL turned general theme loader.")
+rtl_credits:hyperlink("Jerrrry123", "https://github.com/Jerrrry123", "Co-created ThemeRepo; an old revival project of RTL turned general theme loader.")
+rtl_credits:action("th3capn", {}, "Provided assets. Requested Africa Engine to RTL.", function() end)
+rtl_credits:action("Stand Discord Server", {}, "#programming helped to answer many questions. Thanks to aarroonn, Zack, JayMontana36, Murten...", function() end)
+
+rtl_trainers_pc:action("Stand", {}, "AKA the Reset Theme button. This will only affect theme settings.", function() end)
+
+
+
+--menu.set_value(menu.ref_by_path("Self>Set Wanted Level"), "5")

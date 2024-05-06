@@ -5,31 +5,38 @@ local rtl_system = {
     path = "ren1219/RTL/main/",
 }
 
-function rtl_fetchupdate()
-    rtl_cache = io.open(rtl_relpath .. "version.json", "r") 
-    rtl_ver_origin = rtl_cache:read("*all")
-    rtl_cache:close()
-    rtl_ver_origin = rtl_lib_json.decode(rtl_ver_origin)
+rtl_cache = io.open(rtl_relpath .. "version.json", "r") 
+rtl_ver_origin = rtl_cache:read("*all")
+rtl_cache:close()
+rtl_ver_origin = rtl_lib_json.decode(rtl_ver_origin)
 
-    local done = false
-    async_http.init(rtl_system.host, rtl_system.path .. "version.json", function(fetch)
-        done = true
-        rtl_ver_target = rtl_lib_json.decode(fetch)
-        if rtl_ver_origin.number != rtl_ver_target.number then
-            menu.show_warning(menu.my_root(), 0, 
-            "You are about to update Replica Theme Loader.\n\nYour version: " .. rtl_ver_origin.number .. "\nLatest version: " .. rtl_ver_target.number .. "\n\nChangelog:\n" .. rtl_ver_target.changelog, function() 
-            async_http.init(rtl_system.host, rtl_system.path .. "install.pluto", function(fetch)
-            source = io.open(filesystem.scripts_dir() .. SCRIPT_RELPATH, "wb")
-            source:write(fetch) 
-	        source:close() 
-	        util.restart_script()
-	        end) 
-	        async_http.dispatch()
-            end)
-        else
-            util.toast("ERROR: You have the latest version of RTL.")
-        end
-    end)
-    async_http.dispatch()
-    repeat util.yield() until done
+function rtl_getver()
+    return rtl_ver_origin.number
+end
+function rtl_fetchupdate()
+    if async_http.have_access() then 
+        local done = false
+        async_http.init(rtl_system.host, rtl_system.path .. "version.json", function(fetch)
+            done = true
+            rtl_ver_target = rtl_lib_json.decode(fetch)
+            if rtl_ver_origin.number != rtl_ver_target.number then
+                menu.show_warning(menu.my_root(), 0, 
+                "You are about to update Replica Theme Loader.\n\nYour version: " .. rtl_ver_origin.number .. "\nLatest version: " .. rtl_ver_target.number .. "\n\nChangelog:\n" .. rtl_ver_target.changelog, function() 
+                async_http.init(rtl_system.host, rtl_system.path .. "install.pluto", function(fetch)
+                source = io.open(filesystem.scripts_dir() .. SCRIPT_RELPATH, "wb")
+                source:write(fetch) 
+                source:close() 
+                util.restart_script()
+                end) 
+                async_http.dispatch()
+                end)
+            else
+                util.toast("ERROR: You have the latest version of RTL.")
+            end
+        end)
+        async_http.dispatch()
+        repeat util.yield() until done
+    else
+        util.toast("ERROR: Fetch failed. No internet connection.")
+    end
 end
